@@ -1,0 +1,31 @@
+import toast from "react-hot-toast";
+import { apiConnector } from "../apiConnector";
+
+import { catalogEndpoints } from "../apis";
+
+
+export const getCatalogPageData = async(categoryId) => {
+    const toastId = toast.loading("Loading....");
+    let result = [];
+
+    try {
+        const response = await apiConnector("POST", catalogEndpoints.CATALOGPAGE_API, {
+            categoryId: categoryId,
+        });
+
+        console.log("CatalogPageData API Response....", response);
+
+        if(!response?.data?.success) {
+            throw new Error("Could not fetch category page data");
+        }
+
+        result = response?.data;
+    } catch(error) {
+        console.log("CatalogPageData API Error....", error);
+        toast.error(error.message);
+        result = error?.response?.data;
+    }
+
+    toast.dismiss(toastId);
+    return result;
+}
