@@ -114,18 +114,18 @@ const App = () => {
         <Route 
             path="/about" 
             element={
-              <OpenRoute>
+              // <OpenRoute>
                 <About/>
-              </OpenRoute>
+              // </OpenRoute>
             }
         />
 
         <Route 
             path="/contact"
             element={
-              <OpenRoute>
+              // <OpenRoute>
                 <Contact/>
-              </OpenRoute>
+              // </OpenRoute>
             }
         />
 
